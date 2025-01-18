@@ -1,76 +1,91 @@
-import gryffindorBg from "../assets/images/gryffindor-bg.png";
-// import hufflepuffBg from "../assets/images/hufflepuff-bg.jpg";
-// import ravenclawBg from "../assets/images/ravenclaw-bg.jpg";
-// import slytherinBg from "../assets/images/slytherin-bg.jpg";
-
-
-import React from "react";
-import "./Houses.css"; 
-
-const houses = {
-  Gryffindor: {
-    name: "Gryffindor",
-    description: "Los valientes y determinados. Siempre listos para la aventura.",
-    // color: "#ae0001",
-    backgroundImage: gryffindorBg, // Fondo personalizado
-    traits: ["Coraje", "Determinación", "Caballerosidad"],
-    specialEffect: "🔥",
-  },
-  Hufflepuff: {
-    name: "Hufflepuff",
-    description: "Los leales y trabajadores. La amistad es su mayor fortaleza.",
-    color: "#ffdb00",
-    backgroundImage: "/path-to-hufflepuff-bg.jpg",
-    traits: ["Lealtad", "Paciencia", "Justicia"],
-    specialEffect: "🌼",
-  },
-  Ravenclaw: {
-    name: "Ravenclaw",
-    description: "Los sabios y creativos. Siempre buscando el conocimiento.",
-    color: "#0e1a40",
-    backgroundImage: "/path-to-ravenclaw-bg.jpg",
-    traits: ["Inteligencia", "Creatividad", "Sabiduría"],
-    specialEffect: "🦅",
-  },
-  Slytherin: {
-    name: "Slytherin",
-    description: "Los astutos y ambiciosos. Siempre pensando en grande.",
-    color: "#2a623d",
-    backgroundImage: "/path-to-slytherin-bg.jpg",
-    traits: ["Astucia", "Ambición", "Determinación"],
-    specialEffect: "🐍",
-  },
-};
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Houses.css';
 
 const Houses = () => {
+  const houses = [
+    {
+      name: 'Gryffindor',
+      description: 'Los valientes y determinados. Siempre listos para la aventura.',
+      values: ['Coraje', 'Determinación', 'Caballerosidad'],
+      color: '#740001',
+      borderColor: '#D3A625',
+      icon: '🦁',
+      backgroundImage: 'url(/gryffindor-bg.jpg)'
+    },
+    {
+      name: 'Hufflepuff',
+      description: 'Los leales y trabajadores. La amistad es su mayor fortaleza.',
+      values: ['Lealtad', 'Paciencia', 'Justicia'],
+      color: '#FFD800',
+      borderColor: '#000000',
+      icon: '🦡',
+      backgroundImage: 'url(/hufflepuff-bg.jpg)'
+    },
+    {
+      name: 'Ravenclaw',
+      description: 'Los sabios y creativos. Siempre buscando el conocimiento.',
+      values: ['Inteligencia', 'Creatividad', 'Sabiduría'],
+      color: '#0E1A40',
+      borderColor: '#946B2D',
+      icon: '🦅',
+      backgroundImage: 'url(/ravenclaw-bg.jpg)'
+    },
+    {
+      name: 'Slytherin',
+      description: 'Los astutos y ambiciosos. Siempre pensando en grande.',
+      values: ['Astucia', 'Ambición', 'Determinación'],
+      color: '#1A472A',
+      borderColor: '#5D5D5D',
+      icon: '🐍',
+      backgroundImage: 'url(/slytherin-bg.jpg)'
+    }
+  ];
+
   return (
-    <div className="houses-page">
-      <h1 className="page-title">Casas de Hogwarts</h1>
-      <div className="houses-container">
-        {Object.values(houses).map((house, index) => (
-          <div
-            key={index}
+    <div className="houses-container">
+      <Link to="/" className="back-button">
+        <span className="back-arrow">←</span> Regresar al Inicio
+      </Link>
+
+      <h1 className="houses-title">Casas de Hogwarts</h1>
+      <div className="magic-divider"></div>
+
+      <div className="houses-grid">
+        {houses.map((house) => (
+          <div 
+            key={house.name}
             className="house-card"
             style={{
-              backgroundColor: house.color,
-              backgroundImage: `url(${house.backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundBlendMode: "multiply",
+              '--house-color': house.color,
+              '--house-border': house.borderColor,
+              '--house-bg': house.backgroundImage
             }}
           >
             <div className="house-content">
-              <h2 className="house-title">
-                {house.specialEffect} {house.name}
-              </h2>
+              <div className="house-header">
+                <span className="house-icon">{house.icon}</span>
+                <h2 className="house-name">{house.name}</h2>
+              </div>
+              
               <p className="house-description">{house.description}</p>
-              <ul className="house-traits">
-                {house.traits.map((trait, i) => (
-                  <li key={i}>{trait}</li>
+              
+              <div className="house-values">
+                {house.values.map((value, index) => (
+                  <span key={index} className="value-badge">
+                    {value}
+                  </span>
                 ))}
-              </ul>
+              </div>
+
+              <div className="house-overlay"></div>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="hogwarts-quote">
+        "Hogwarts será siempre tu hogar"
       </div>
     </div>
   );

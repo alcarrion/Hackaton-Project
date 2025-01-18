@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Characters.css';
 
 const Characters = () => {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [personajes, setPersonajes] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     fetch("https://hp-api.herokuapp.com/api/characters")
@@ -13,30 +15,99 @@ const Characters = () => {
         return response.json();
       })
       .then(data => {
-        setCharacters(data.slice(0, 20)); // Limitar a los primeros 20 personajes
+        setPersonajes(data.slice(0, 20));
       })
       .catch(error => console.error("Error al cargar los personajes:", error))
       .finally(() => {
-        setLoading(false); 
+        setCargando(false);
       });
   }, []);
 
+  const obtenerColorCasa = (casa) => {
+    switch (casa?.toLowerCase()) {
+      case 'gryffindor': return 'var(--gryffindor)';
+      case 'slytherin': return 'var(--slytherin)';
+      case 'hufflepuff': return 'var(--hufflepuff)';
+      case 'ravenclaw': return 'var(--ravenclaw)';
+      default: return 'var(--unknown-house)';
+    }
+  };
+
+  const traducirCasa = (casa) => {
+    switch (casa?.toLowerCase()) {
+      case 'gryffindor': return 'Gryffindor';
+      case 'slytherin': return 'Slytherin';
+      case 'hufflepuff': return 'Hufflepuff';
+      case 'ravenclaw': return 'Ravenclaw';
+      default: return 'Casa Desconocida';
+    }
+  };
+
+  const traducirEspecie = (especie) => {
+    switch (especie?.toLowerCase()) {
+      case 'human': return 'Humano';
+      case 'half-giant': return 'Semi-Gigante';
+      case 'werewolf': return 'Hombre Lobo';
+      case 'ghost': return 'Fantasma';
+      case 'house-elf': return 'Elfo Doméstico';
+      case 'goblin': return 'Duende';
+      default: return especie || 'Desconocida';
+    }
+  };
+
   return (
-    <div>
-      <h1>Personajes de Harry Potter</h1>
-      {loading ? (
-        <p>Cargando personajes...</p>
+    <div className="characters-container">
+      <Link to="/" className="boton-regresar">
+        <span className="flecha">←</span> Regresar al Inicio
+      </Link>
+
+      <div className="characters-header">
+        <h1>Personajes de Harry Potter</h1>
+        <div className="magic-separator"></div>
+      </div>
+
+      {cargando ? (
+        <div className="loading-container">
+          <div className="loading-wand">
+            <span>¡Accio Personajes!</span>
+          </div>
+        </div>
       ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {characters.map(character => (
-            <div key={character.id || character.name} style={{ margin: '10px', textAlign: 'center' }}>
-              <img
-                src={character.image}
-                alt={character.name}
-                style={{ width: '150px', borderRadius: '10px' }}
-              />
-              <h3>{character.name}</h3>
-              <p>Casa: {character.house || 'N/A'}</p>
+        <div className="characters-grid">
+          {personajes.map(personaje => (
+            <div 
+              key={personaje.id || personaje.name} 
+              className="character-card"
+              style={{'--house-color': obtenerColorCasa(personaje.house)}}
+            >
+              <div className="character-image-container">
+                <img
+                  src={personaje.image || 'https://via.placeholder.com/150x200.png?text=Sin+Imagen'}
+                  alt={personaje.name}
+                  className="character-image"
+                />
+              </div>
+              <div className="character-info">
+                <h3>{personaje.name}</h3>
+                <div className="character-details">
+                  <span className="house-badge">
+                    {traducirCasa(personaje.house)}
+                  </span>
+                  {personaje.alive !== undefined && (
+                    <span className={`status-badge ${personaje.alive ? 'alive' : 'deceased'}`}>
+                      {personaje.alive ? 'Vivo' : 'Fallecido'}
+                    </span>
+                  )}
+                </div>
+                <div className="character-meta">
+                  {personaje.species && (
+                    <p>Especie: {traducirEspecie(personaje.species)}</p>
+                  )}
+                  {personaje.patronus && (
+                    <p>Patronus: {personaje.patronus}</p>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>

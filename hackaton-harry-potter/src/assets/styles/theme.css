@@ -34,17 +34,7 @@ body {
     opacity: 0.9;
   }
   
-  /* Navbar */
-  nav {
-    background-color: #2d2d2d;
-    padding: 1rem 0;
-  }
-  
-  nav a {
-    font-size: 1rem;
-    margin-right: 1rem;
-  }
-  
+ 
   /* Footer */
   footer {
     background-color: #2d2d2d;
