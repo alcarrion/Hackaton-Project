@@ -1,0 +1,65 @@
+   .houses-page {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    background-color: #1a1a1a;
+    min-height: 100vh;
+  }
+  
+  .page-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .houses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .house-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .house-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  }
+  
+  .house-content {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .house-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .house-description {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .house-traits {
+    list-style: none;
+    padding: 0;
+    font-size: 1rem;
+    margin: 20px 0;
+  }
+  
+  .house-traits li {
+    margin-bottom: 10px;
+  }
+  

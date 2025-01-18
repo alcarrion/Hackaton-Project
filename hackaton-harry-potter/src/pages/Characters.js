@@ -1,39 +1,48 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("https://hp-api.herokuapp.com/api/characters")
-      .then((response) => setCharacters(response.data))
-      .catch((error) => console.error("Error fetching characters:", error));
+    fetch("https://hp-api.herokuapp.com/api/characters")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al cargar los personajes");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setCharacters(data.slice(0, 20)); // Limitar a los primeros 20 personajes
+      })
+      .catch(error => console.error("Error al cargar los personajes:", error))
+      .finally(() => {
+        setLoading(false); 
+      });
   }, []);
-
-  const filteredCharacters = characters.filter((char) =>
-    char.house.toLowerCase().includes(filter.toLowerCase())
-  );
 
   return (
     <div>
-      <h2>Personajes</h2>
-      <input
-        type="text"
-        placeholder="Filtrar por casa"
-        onChange={(e) => setFilter(e.target.value)}
-      />
-      <div>
-        {filteredCharacters.map((char) => (
-          <div key={char.name}>
-            <h3>{char.name}</h3>
-            <p>Casa: {char.house}</p>
-          </div>
-        ))}
-      </div>
+      <h1>Personajes de Harry Potter</h1>
+      {loading ? (
+        <p>Cargando personajes...</p>
+      ) : (
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {characters.map(character => (
+            <div key={character.id || character.name} style={{ margin: '10px', textAlign: 'center' }}>
+              <img
+                src={character.image}
+                alt={character.name}
+                style={{ width: '150px', borderRadius: '10px' }}
+              />
+              <h3>{character.name}</h3>
+              <p>Casa: {character.house || 'N/A'}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 export default Characters;
-
