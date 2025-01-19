@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import './Spells.css';
 
 const Spells = () => {
+  // Estado para almacenar la lista de hechizos.
   const [spells, setSpells] = useState([]);
+  // Estado para manejar el indicador de carga.
   const [loading, setLoading] = useState(true);
+  // Estado para manejar el término de búsqueda ingresado por el usuario.
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -26,6 +29,8 @@ const Spells = () => {
     fetchSpells();
   }, []);
 
+
+ // Filtrar los hechizos basándonos en el término de búsqueda ingresado por el usuario.
   const filteredSpells = spells.filter(spell =>
     spell.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     spell.description.toLowerCase().includes(searchTerm.toLowerCase())

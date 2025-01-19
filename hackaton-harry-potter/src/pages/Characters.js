@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import './Characters.css';
 
 const Characters = () => {
+// Estado para almacenar los personajes obtenidos de la API.
   const [personajes, setPersonajes] = useState([]);
+ // Estado para manejar el indicador de carga mientras se obtienen los datos. 
   const [cargando, setCargando] = useState(true);
+
 
   useEffect(() => {
     fetch("https://hp-api.herokuapp.com/api/characters")
@@ -23,6 +26,7 @@ const Characters = () => {
       });
   }, []);
 
+ // Función para obtener el color de la casa basado en el nombre de la casa.
   const obtenerColorCasa = (casa) => {
     switch (casa?.toLowerCase()) {
       case 'gryffindor': return 'var(--gryffindor)';
@@ -33,6 +37,7 @@ const Characters = () => {
     }
   };
 
+// Función para traducir el nombre de la casa al español. 
   const traducirCasa = (casa) => {
     switch (casa?.toLowerCase()) {
       case 'gryffindor': return 'Gryffindor';
@@ -43,6 +48,7 @@ const Characters = () => {
     }
   };
 
+// Función para traducir el nombre de la especie al español.
   const traducirEspecie = (especie) => {
     switch (especie?.toLowerCase()) {
       case 'human': return 'Humano';

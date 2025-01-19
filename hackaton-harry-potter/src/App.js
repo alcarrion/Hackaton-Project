@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Removemos el Navbar ya que usaremos las tarjetas como navegación */}
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/characters" element={<Characters />} />
