@@ -18,7 +18,7 @@ const Houses = () => {
       description: 'Los leales y trabajadores. La amistad es su mayor fortaleza.',
       values: ['Lealtad', 'Paciencia', 'Justicia'],
       color: '#FFD800',
-      borderColor: '#000000',
+      borderColor: '#740001',
       icon: '🦡',
       backgroundImage: 'url(/hufflepuff-bg.jpg)'
     },
@@ -36,7 +36,7 @@ const Houses = () => {
       description: 'Los astutos y ambiciosos. Siempre pensando en grande.',
       values: ['Astucia', 'Ambición', 'Determinación'],
       color: '#1A472A',
-      borderColor: '#5D5D5D',
+      borderColor: '#374709',
       icon: '🐍',
       backgroundImage: 'url(/slytherin-bg.jpg)'
     }

@@ -1,50 +1,84 @@
+/* Contenedor principal */
 .test-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1a1a1a 0%, #363636 100%);
+  background: linear-gradient(135deg, #121212 0%, #2e2e2e 100%);
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Georgia', serif; /* Fuente elegante */
+  color: #f5f5f5;
 }
 
+/* Botón de regresar al inicio */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #3c3c3c;
+  color: #f5f5f5;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Flecha del botón */
+.back-arrow {
+  margin-right: 8px;
+}
+
+/* Contenedor de preguntas */
 .question-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(34, 34, 34, 0.9);
+  border: 2px solid #a18d6c; /* Color dorado oscuro */
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   width: 90%;
   max-width: 600px;
   text-align: center;
+  position: relative;
 }
 
+/* Barra de progreso */
 .progress-bar {
   width: 100%;
-  height: 8px;
-  background: #ddd;
-  border-radius: 4px;
+  height: 10px;
+  background: #555;
+  border-radius: 5px;
   margin-bottom: 1rem;
   overflow: hidden;
 }
 
 .progress {
   height: 100%;
-  background: #4a90e2;
+  background: #a18d6c; /* Dorado */
   transition: width 0.3s ease;
 }
 
+/* Pregunta */
 .question-number {
-  color: #666;
   font-size: 1rem;
   margin-bottom: 1rem;
+  color: #c4c4c4;
 }
 
 .question-text {
-  color: #2c3e50;
   font-size: 1.8rem;
+  color: #f5f5f5;
   margin-bottom: 2rem;
 }
 
+/* Botones de opciones */
 .options-container {
   display: grid;
   gap: 1rem;
@@ -58,42 +92,44 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  color: white; /* Texto blanco por defecto */
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #fff;
 }
 
 .option-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
+/* Colores de las casas */
 .option-button.gryffindor {
-  background-color: #740001; /* Fondo rojo oscuro */
-  color: #f5f5f5; /* Texto claro */
+  background: #740001;
 }
 
 .option-button.hufflepuff {
-  background-color: #ecb939; /* Fondo amarillo */
-  color: #4a4a4a; /* Texto oscuro para contraste */
+  background: #ecb939;
+  color: #3c3c3c;
 }
 
 .option-button.ravenclaw {
-  background-color: #222f5b; /* Fondo azul oscuro */
-  color: #d1d1ff; /* Texto claro */
+  background: #222f5b;
 }
 
 .option-button.slytherin {
-  background-color: #1a472a; /* Fondo verde oscuro */
-  color: #e1f0e1; /* Texto claro */
+  background: #1a472a;
 }
 
+/* Contenedor de resultados */
 .result-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(34, 34, 34, 0.9);
+  border: 2px solid #a18d6c;
   padding: 3rem;
   border-radius: 15px;
   text-align: center;
   max-width: 600px;
   width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .result-container.gryffindor { border-top: 8px solid #740001; }
@@ -102,17 +138,18 @@
 .result-container.slytherin { border-top: 8px solid #1a472a; }
 
 .result-container h1 {
-  color: #2c3e50;
+  color: #f5f5f5;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .result-description {
   font-size: 1.2rem;
-  color: #666;
+  color: #c4c4c4;
   margin-bottom: 2rem;
 }
 
+/* Botón para reiniciar el test */
 .restart-button {
   background: #4a90e2;
   color: white;
@@ -129,6 +166,7 @@
   transform: translateY(-2px);
 }
 
+/* Responsive para pantallas pequeñas */
 @media (max-width: 768px) {
   .question-container,
   .result-container {
@@ -144,6 +182,48 @@
   }
 }
 
+/* Fondo del video */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Asegura que el video esté detrás del contenido */
+}
 
 
 
+/* Contenedor principal */
+.test-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden; /* Evita cualquier desbordamiento */
+  z-index: 1;
+}
+
+/* Fondo de video */
+.video-background video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+body.test-page {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Evita el scroll */
+}
