@@ -201,7 +201,7 @@
     font-size: 1.2em;
   }
   
-  /* Asegúrate de que el contenedor tenga posición relativa para el botón */
+ 
   .characters-container {
     position: relative;
     padding-top: 60px; /* Espacio para el botón */
