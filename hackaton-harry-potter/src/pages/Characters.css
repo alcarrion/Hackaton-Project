@@ -1,5 +1,5 @@
 :root {
-    --gryffindor: linear-gradient(135deg, #740001 0%, #ae0001 100%);
+    --gryffindor: linear-gradient(135deg, #740001 0%, #ae0001 100%); /*variables css*/
     --slytherin: linear-gradient(135deg, #1a472a 0%, #2a623d 100%);
     --hufflepuff: linear-gradient(135deg, #ecb939 0%, #f0c75e 100%);
     --ravenclaw: linear-gradient(135deg, #0e1a40 0%, #222f5b 100%);
@@ -206,5 +206,9 @@
     position: relative;
     padding-top: 60px; /* Espacio para el botón */
   }
+
+
+
+
 
   
